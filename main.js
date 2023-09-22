@@ -10,14 +10,13 @@ rejected : 작업의 요청이 거절된 상태
 */
 fetch('DB/department.json')
 	.then((data) => {
-		//이전 메서드에 반환된 프로미스가 fullfiled 상태일때 실행
-		console.log(data);
-		const result = data.json();
-		result.then((json) => {
-			console.log(json);
-		});
+		//첫번째 then구문에 받아진 promise를 다시 바로 리턴하면
+		//두번째 then구문에서 해당 데이터를 동기적으로 활용가능
+		return data.json();
+	})
+	.then((json) => {
+		console.log(json);
 	})
 	.catch((err) => {
-		//이저ㄴ메서드에서 반환된 프로미스가 rejected 상테일 때 실행
 		console.log(err);
 	});
